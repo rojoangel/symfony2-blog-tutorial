@@ -67,13 +67,13 @@ class sf2_example {
     cmd => 'install',
     cwd => '/vagrant',
     dev => true,
-    # no_scripts => false,
+    scripts => true,
     require => [Package["php5-cli"], Temp_bind_mount["sf2-cache"], Temp_bind_mount["sf2-logs"]]
   }
 
   # Composer runs as root, so if it creates cache entries, the web process can't change them
   exec { "fix-cache-owner":
-    command => "/bin/chown -R www-data:www-data /vagrant/app/cache/",
+    command => "/bin/chown -R www-data:www-data /vagrant/app/cache/*",
     require => Composer::Exec['composer-install'],
    }
 
