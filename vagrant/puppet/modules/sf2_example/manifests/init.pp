@@ -2,7 +2,7 @@ class sf2_example {
   stage { 'apt-update': before => Stage['main'] }
   class { 'sf2_example::current_apt_index': stage => 'apt-update' }
   
-  package { ["php5-fpm", "php5-cli", "nginx"]:
+  package { ["php5-fpm", "php5-cli", "nginx", "php5-mysql", "mysql-server"]:
     ensure => installed,
   }
 
@@ -16,6 +16,12 @@ class sf2_example {
     enable => true,
     ensure => running,
     require => Package["nginx"],
+  }
+
+  service { 'mysql':
+    enable => true,
+    ensure  => running,
+    require => Package['mysql-server'],
   }
 
   file { "/etc/nginx/sites-enabled/default":
