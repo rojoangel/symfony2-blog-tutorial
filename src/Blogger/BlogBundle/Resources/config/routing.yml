@@ -1,0 +1,17 @@
+BloggerBlogBundle_homepage:
+  pattern: /symblog
+  defaults: { _controller: BloggerBlogBundle:Page:index }
+  requirements:
+    _method: GET
+
+BloggerBlogBundle_about:
+  pattern: /symblog/about
+  defaults: { _controller: BloggerBlogBundle:Page:about }
+  requirements:
+    _method: GET
+
+BloggerBlogBundle_contact:
+  pattern: /symblog/contact
+  defaults: { _controller: BloggerBlogBundle:Page:contact }
+  requirements:
+    _method: GET|POST
